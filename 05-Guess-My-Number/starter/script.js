@@ -9,7 +9,7 @@ const guessing = document
   .querySelector('.check')
   .addEventListener('click', function () {
     var guess = Number(document.querySelector('.guess').value);
-    if (guess !== secretNumber) {
+    if (guess !== secretNumber && guess) {
       message.textContent =
         guess > secretNumber ? 'Too high! Go lower' : 'Too low! Go higher';
       score--;
