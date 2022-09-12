@@ -4,7 +4,6 @@ var score = Number(document.querySelector('.score').textContent);
 var highScore = document.querySelector('.highscore');
 var num = document.querySelector('.number');
 var message = document.querySelector('.message');
-// document.querySelector('.number').textContent = secretNumber;
 
 const guessing = document
   .querySelector('.check')
