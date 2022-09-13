@@ -76,16 +76,19 @@ function victory() {
   if (activePlayer == player0) {
     document.querySelector('#name--0').textContent = 'WINNER';
     btnRoll.disabled = true;
+    player0.classList.add('player--winner');
   } else {
     document.querySelector('#name--1').textContent = 'WINNER';
     btnRoll.disabled = true;
+    player1.classList.add('player--winner');
   }
 }
 
 // New game button
 btnNew.addEventListener('click', function () {
-  activePlayer = player1;
-  changeActivePlayer();
+  activePlayer = player0;
+  player0.classList.add('player--active');
+  player1.classList.remove('player--active');
   currentScore = 0;
   score1.textContent = 0;
   score0.textContent = 0;
@@ -97,6 +100,8 @@ btnNew.addEventListener('click', function () {
   diceImg.classList.add('hidden');
   current0El.textContent = currentScore;
   current1El.textContent = currentScore;
+  player0.classList.remove('player--winner');
+  player1.classList.remove('player--winner');
 });
 
 // toggles active player
