@@ -30,18 +30,18 @@ btnRoll.addEventListener('click', function () {
       current0El.textContent = currentScore;
       if (currentScore + score0El > 99) {
         victory();
-      } else {
-        current1El.textContent = currentScore;
-        if (currentScore + score1El > 99) {
-          victory();
-        }
       }
     } else {
-      currentScore = 0;
-      current0El.textContent = currentScore;
       current1El.textContent = currentScore;
-      changeActivePlayer();
+      if (currentScore + score1El > 99) {
+        victory();
+      }
     }
+  } else {
+    currentScore = 0;
+    current0El.textContent = currentScore;
+    current1El.textContent = currentScore;
+    changeActivePlayer();
   }
 });
 
