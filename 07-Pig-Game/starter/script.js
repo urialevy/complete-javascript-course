@@ -16,7 +16,7 @@ let activePlayer = player0;
 let result = 0;
 let currentScore = 0;
 let score0El = 0;
-let score1El = 1;
+let score1El = 0;
 score0.textContent = 0;
 score1.textContent = 0;
 
@@ -48,13 +48,23 @@ btnHold.addEventListener('click', function () {
     score0.textContent = score0El;
     currentScore = 0;
     current0El.textContent = currentScore;
-    changeActivePlayer();
+    if (score0El > 99) {
+      document.querySelector('#name--0').textContent = 'WINNER';
+      btnRoll.disabled = true;
+    } else {
+      changeActivePlayer();
+    }
   } else {
     score1El += currentScore;
     score1.textContent = score1El;
     currentScore = 0;
     current1El.textContent = currentScore;
-    changeActivePlayer();
+    if (score1El > 99) {
+      document.querySelector('#name--1').textContent = 'WINNER';
+      btnRoll.disabled = true;
+    } else {
+      changeActivePlayer();
+    }
   }
 });
 
