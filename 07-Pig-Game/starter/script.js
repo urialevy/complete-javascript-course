@@ -101,13 +101,11 @@ btnNew.addEventListener('click', function () {
 
 // toggles active player
 function changeActivePlayer() {
+  player0.classList.toggle('player--active');
+  player1.classList.toggle('player--active');
   if (activePlayer == player0) {
-    player0.classList.remove('player--active');
-    player1.classList.add('player--active');
     activePlayer = player1;
   } else {
     activePlayer = player0;
-    player1.classList.remove('player--active');
-    player0.classList.add('player--active');
   }
 }
