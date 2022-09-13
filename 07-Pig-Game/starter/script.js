@@ -13,7 +13,6 @@ const current1El = document.getElementById('current--1');
 const player0 = document.querySelector('.player--0');
 const player1 = document.querySelector('.player--1');
 let activePlayer = player0;
-let result = 0;
 let currentScore = 0;
 let score0El = 0;
 let score1El = 0;
@@ -40,9 +39,10 @@ btnRoll.addEventListener('click', function () {
   }
 });
 
-// hold button
+// hold button - end game if total score > 99
+btnHold.addEventListener('click', holdNum);
 
-btnHold.addEventListener('click', function () {
+function holdNum() {
   if (activePlayer == player0) {
     score0El += currentScore;
     score0.textContent = score0El;
@@ -66,6 +66,21 @@ btnHold.addEventListener('click', function () {
       changeActivePlayer();
     }
   }
+}
+
+// New game button
+btnNew.addEventListener('click', function () {
+  activePlayer = player1;
+  changeActivePlayer();
+  currentScore = 0;
+  score1.textContent = 0;
+  score0.textContent = 0;
+  score0El = 0;
+  score1El = 0;
+  btnRoll.disabled = false;
+  document.querySelector('#name--0').textContent = 'PLAYER 1';
+  document.querySelector('#name--1').textContent = 'PLAYER 2';
+  diceImg.classList.add('hidden');
 });
 
 // toggles active player
