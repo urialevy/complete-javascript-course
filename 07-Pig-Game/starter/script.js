@@ -8,14 +8,15 @@ const btnRoll = document.querySelector('.btn--roll');
 const btnNew = document.querySelector('.btn--new');
 const btnHold = document.querySelector('.btn--hold');
 const scoreScreens = document.querySelectorAll('.current-score');
+const current0El = document.getElementById('current--0');
+const current1El = document.getElementById('current--1');
+const player0 = document.querySelector('.player--0');
+const player1 = document.querySelector('.player--1');
+let activePlayer = player0;
 let result = 0;
 let currentScore = 0;
 score0.textContent = 0;
 score1.textContent = 0;
-// var player1 = document.querySelector('.player--0');
-// var player2 = document.querySelector('.player--1');
-const current0El = document.getElementById('current--0');
-const current1El = document.getElementById('current--1');
 
 //roll dice and updating display
 btnRoll.addEventListener('click', function () {
@@ -24,9 +25,26 @@ btnRoll.addEventListener('click', function () {
   diceImg.src = `dice-${dice}.png`;
   if (dice !== 1) {
     currentScore += dice;
-    current0El.textContent = currentScore; // TODO: CHANGE LATER FOR CURRENT PLAYER
+    if (activePlayer == player0) {
+      current0El.textContent = currentScore;
+    } else {
+      current1El.textContent = currentScore;
+    }
   } else {
     currentScore = 0;
-    current0El.textContent = currentScore; // TODO: CHANGE LATER FOR CURRENT PLAYER
+    current0El.textContent = currentScore;
+    current1El.textContent = currentScore;
+    changeActivePlayer();
   }
 });
+function changeActivePlayer() {
+  if (activePlayer == player0) {
+    player0.classList.remove('player--active');
+    player1.classList.add('player--active');
+    activePlayer = player1;
+  } else {
+    activePlayer = player0;
+    player1.classList.remove('player--active');
+    player0.classList.add('player--active');
+  }
+}
