@@ -28,14 +28,20 @@ btnRoll.addEventListener('click', function () {
     currentScore += dice;
     if (activePlayer == player0) {
       current0El.textContent = currentScore;
+      if (currentScore + score0El > 99) {
+        victory();
+      } else {
+        current1El.textContent = currentScore;
+        if (currentScore + score1El > 99) {
+          victory();
+        }
+      }
     } else {
+      currentScore = 0;
+      current0El.textContent = currentScore;
       current1El.textContent = currentScore;
+      changeActivePlayer();
     }
-  } else {
-    currentScore = 0;
-    current0El.textContent = currentScore;
-    current1El.textContent = currentScore;
-    changeActivePlayer();
   }
 });
 
@@ -49,8 +55,7 @@ function holdNum() {
     currentScore = 0;
     current0El.textContent = currentScore;
     if (score0El > 99) {
-      document.querySelector('#name--0').textContent = 'WINNER';
-      btnRoll.disabled = true;
+      victory();
     } else {
       changeActivePlayer();
     }
@@ -60,11 +65,20 @@ function holdNum() {
     currentScore = 0;
     current1El.textContent = currentScore;
     if (score1El > 99) {
-      document.querySelector('#name--1').textContent = 'WINNER';
-      btnRoll.disabled = true;
+      victory();
     } else {
       changeActivePlayer();
     }
+  }
+}
+
+function victory() {
+  if (activePlayer == player0) {
+    document.querySelector('#name--0').textContent = 'WINNER';
+    btnRoll.disabled = true;
+  } else {
+    document.querySelector('#name--1').textContent = 'WINNER';
+    btnRoll.disabled = true;
   }
 }
 
@@ -81,6 +95,8 @@ btnNew.addEventListener('click', function () {
   document.querySelector('#name--0').textContent = 'PLAYER 1';
   document.querySelector('#name--1').textContent = 'PLAYER 2';
   diceImg.classList.add('hidden');
+  current0El.textContent = currentScore;
+  current1El.textContent = currentScore;
 });
 
 // toggles active player
